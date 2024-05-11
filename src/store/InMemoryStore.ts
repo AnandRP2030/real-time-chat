@@ -1,4 +1,4 @@
-import { Chat, Store, UserId } from "./store/store";
+import { Chat, Store, UserId } from "./store";
 let globalChatId = 0;
 export interface Room {
   roomId: string;
@@ -14,43 +14,46 @@ export class InMemoryStore implements Store {
 
   initRoom(roomId: string) {
     this.store.set(roomId, {
-        roomId,
-        chats: []
-    })
+      roomId,
+      chats: [],
+    });
   }
   getChats(roomId: string, limit: number, offset: number) {
     const room = this.store.get(roomId);
     if (!room) {
-        return []
+      return [];
     }
-    return room.chats.reverse().slice(0, offset).slice(-1 * limit)
+    return room.chats
+      .reverse()
+      .slice(0, offset)
+      .slice(-1 * limit);
   }
   addChat(userId: UserId, name: string, roomId: string, message: string) {
     const room = this.store.get(roomId);
     if (!room) {
-        return
+      return null;
     }
-    room.chats.push({
-        id: (globalChatId++).toString(),
-        userId,
-        name,
-        message,
-        upVotes: [],
-        downVotes: []
-    })
-
+    const chat = {
+      id: (globalChatId++).toString(),
+      userId,
+      name,
+      message,
+      upVotes: [],
+      downVotes: [],
+    };
+    room.chats.push(chat);
+    return chat;
   }
   upVote(roomId: string, chatId: string, userId: UserId) {
-    const room = this.store.get(roomId)
+    const room = this.store.get(roomId);
     if (!room) {
-        return
+      return;
     }
-    //Todo: make this fater
-    const chat = room.chats.find(({id} ) => id === chatId);
+    //Todo: make this faster
+    const chat = room.chats.find(({ id }) => id === chatId);
     if (chat) {
-        chat.upVotes.push(userId)
+      chat.upVotes.push(userId);
     }
-
-
+    return chat;
   }
 }
