@@ -1,0 +1,2 @@
+PORT=8000
+MONGODB_URI=mongodb+srv://anandrp2030:anandrp2030@cluster0.39g5ziq.mongodb.net/my-chat-app

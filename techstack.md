@@ -15,4 +15,4 @@
 9. dotenv 
 
 ## Deploy
-1.  render
+1. Deploy => render

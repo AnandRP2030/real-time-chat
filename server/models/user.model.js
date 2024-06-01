@@ -18,7 +18,7 @@ const userSchema = new Schema({
   gender: {
     type: String,
     required: true,
-    enum: ["male", "female", "other"],
+    enum: ["male", "female"],
   },
   profilePic: {
     type: String,
@@ -27,5 +27,5 @@ const userSchema = new Schema({
 });
 
 // collection name (here User) should be capitalize
-const UserModel = mongoose.model("User", userSchema);
-module.exports = { UserModel };
+export const UserModel = mongoose.model("User", userSchema);
+
