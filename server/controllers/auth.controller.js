@@ -58,7 +58,7 @@ const login = async (req, res) => {
 
     const user = await UserModel.findOne({ userName });
     const isPasswordMatch = await bcrypt.compare(password, user?.password || "");
-    
+
     if (!user || !isPasswordMatch) {
       return res
         .status(404)
@@ -86,15 +86,5 @@ const logout = (req, res) => {
       .json({ message: "Internal server error ", error: error.message });
   }
 };
-const getAllUsers = async (req, res) => {
-  try {
-    const allUsers = await UserModel.find({});
-    return res.status(200).json({message: "All users", data: allUsers})
-  } catch (error) {
-    console.log("Error on get all users", error);
-    return res
-      .status(500)
-      .json({ message: "Internal server error ", error: error.message });
-  }
-}
-export { signup, login, logout, getAllUsers };
+
+export { signup, login, logout };

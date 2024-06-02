@@ -18,12 +18,12 @@ export const protectRoute = async (req, res, next) => {
         .json({ error: "Unauthorized - Token is either expired on invalid." });
     }
 
+
     const user = await UserModel.findById(decoded.userId).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User not found!" });
     }
-
-    req.userId = user._id;
+    req.user = user;
     next();
   } catch (error) {
     console.log("Error on protect route", error.message);
