@@ -55,15 +55,14 @@ const login = async (req, res) => {
         .json({ message: "Username and password is required." });
     }
 
-    console.log("re", req.body);
 
     const user = await UserModel.findOne({ userName });
-    const isPasswordMatch = bcrypt.compare(password, user?.password || "");
-
-    if (!user && !isPasswordMatch) {
+    const isPasswordMatch = await bcrypt.compare(password, user?.password || "");
+    
+    if (!user || !isPasswordMatch) {
       return res
         .status(404)
-        .json({ message: "Please check your email and password." });
+        .json({ message: "Please check your username and password." });
     }
 
     const token = generateTokenAndSetCookie(user._id, res);

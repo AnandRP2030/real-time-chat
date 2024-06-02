@@ -1,8 +1,9 @@
 import express from 'express';
-import {createNewMessage, getAllMessages} from '../controllers/message.controllers.js';
+import {sendMessage, getAllMessages} from '../controllers/message.controller.js';
+import { protectRoute } from '../middlewares/protectRoutes.js';
 
 const messageRoutes = express.Router();
-messageRoutes.post('/new', createNewMessage);
+messageRoutes.post('/send/:id', protectRoute, sendMessage);
 messageRoutes.get('/all-messages', getAllMessages);
 
 export default messageRoutes;
