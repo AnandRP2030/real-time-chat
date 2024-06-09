@@ -1,7 +1,7 @@
 const Conversation = () => {
   return (
     <>
-      <div className="tw-flex tw-gap-2 tw-items-center tw-hover:bg-sky-500 tw-rounded tw-p-2 tw-py-1 tw-cursor-pointer">
+      <div className="tw-flex hover:tw-bg-slate-800 tw-gap-2 tw-items-center tw-hover:bg-sky-500 tw-rounded tw-p-2 tw-py-1 tw-cursor-pointer">
         <div className="tw-avatar tw-online">
           <div className="tw-w-12 tw-rounded-full">
             <img
@@ -24,3 +24,6 @@ const Conversation = () => {
   );
 };
 export default Conversation;
+
+
+
