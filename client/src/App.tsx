@@ -1,36 +1,17 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { SignUp } from './components/signup/signup';
+import { Login } from './components/login/login';
 function App() {
   return (
-    <>
-      <h1> Home page</h1>
-      <button className="btn btn-neutral btn-lg">Neutral</button>
+    <BrowserRouter>
 
-      <div className="chat chat-start">
-        <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS chat bubble component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            />
-          </div>
-        </div>
-        <div className="chat-bubble">
-          It was said that you would, destroy the Sith, not join them.
-        </div>
-      </div>
-      <div className="chat chat-start">
-        <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS chat bubble component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            />
-          </div>
-        </div>
-        <div className="chat-bubble">
-          It was you who would bring balance to the Force
-        </div>
-      </div>
-    </>
+      <Routes>
+
+        <Route path="/" element={<h1> Home </h1>}/>
+        <Route path="/signup" element={<SignUp />}/>
+        <Route path="/login" element={<Login />}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
