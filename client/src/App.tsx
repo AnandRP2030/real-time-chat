@@ -7,14 +7,13 @@ import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <BrowserRouter>
-       <Toaster />
+      <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sidebar" element={<Sidebar />} />
       </Routes>
-   
     </BrowserRouter>
   );
 }

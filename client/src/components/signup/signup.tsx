@@ -7,14 +7,14 @@ import { SignupUserDetails } from "../../types/userTypes";
 import { useSignup } from "../../hooks/useSignup";
 export const SignUp = () => {
   const [userData, setUserData] = useState<SignupUserDetails>({
-    username: "",
-    password: "",
-    confirmPassword: "",
-    fullName: "",
-    gender: "",
+    userName: "abcd",
+    password: "1234",
+    confirmPassword: "1234",
+    fullName: "Anand R P",
+    gender: "male",
   });
 
-  const {loading, signup} = useSignup();
+  const { loading, signup } = useSignup();
 
   const handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,11 +25,10 @@ export const SignUp = () => {
     setUserData({ ...userData, gender });
   };
 
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await signup(userData)
-    
+    await signup(userData);
   };
   return (
     <>
@@ -64,8 +63,8 @@ export const SignUp = () => {
                 type="text"
                 placeholder="Username"
                 className="tw-w-full tw-input tw-input-bordered tw-h-10"
-                name="username"
-                value={userData.username}
+                name="userName"
+                value={userData.userName}
                 onChange={handleChanges}
                 autoComplete="additional-name"
               />

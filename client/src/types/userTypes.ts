@@ -1,5 +1,5 @@
 export interface UserDetails {
-    username: string;
+    userName: string;
     gender: string;
     fullName: string
 }
@@ -9,3 +9,8 @@ export interface SignupUserDetails extends UserDetails {
     confirmPassword: string;
 }
 
+export interface LoginUserDeatils extends UserDetails {
+    createdAt: string;
+    profilePic: string;
+    _id: string;
+}

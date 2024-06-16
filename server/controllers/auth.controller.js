@@ -14,7 +14,7 @@ const signup = async (req, res) => {
     if (existingUser) {
       return res
         .status(400)
-        .json({ message: "This username already taken!. Try another one" });
+        .json({ error: "This username already taken!. Try another one" });
     }
 
     const boyOrGirl = gender === "male" ? "boy" : "girl";
