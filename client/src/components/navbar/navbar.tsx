@@ -3,10 +3,10 @@ export const Navbar = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <ul className="tw-px-8 tw-h-20 tw-items-center tw-justify-between tw-flex tw-flex-row tw-text-xl tw-bg-red-900 ">
+      <ul className="tw-px-8 tw-h-20 tw-items-center tw-justify-between tw-flex tw-flex-row tw-text-xl tw-bg-gray-800 ">
         <li
           role="button"
-          className="hover:tw-bg-sky-700"
+          className="hover:tw-font-bold "
           onClick={() => {
             navigate("/");
           }}
@@ -16,7 +16,7 @@ export const Navbar = () => {
         </li>
         <li
           role="button"
-          className="hover:tw-bg-sky-700"
+          className="hover:tw-font-bold "
           onClick={() => {
             navigate("/signup");
           }}
@@ -26,7 +26,7 @@ export const Navbar = () => {
         </li>
         <li
           role="button"
-          className="hover:tw-bg-sky-700"
+          className="hover:tw-font-bold"
           onClick={() => {
             navigate("/login");
           }}

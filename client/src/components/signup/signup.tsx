@@ -1,8 +1,36 @@
-// STARTER CODE FOR THE SIGNUP COMPONENT
+import React from "react";
+import { Link } from "react-router-dom";
 import { Navbar } from "../navbar/navbar";
 import { GenderCheckbox } from "./genderCheckbox";
-
+import { useState } from "react";
+import { SignupUserDetails } from "../../types/userTypes";
+import { useSignup } from "../../hooks/useSignup";
 export const SignUp = () => {
+  const [userData, setUserData] = useState<SignupUserDetails>({
+    username: "",
+    password: "",
+    confirmPassword: "",
+    fullName: "",
+    gender: "",
+  });
+
+  const {loading, signup} = useSignup();
+
+  const handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  const handleGenderChange = (gender: string) => {
+    setUserData({ ...userData, gender });
+  };
+
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    await signup(userData)
+    
+  };
   return (
     <>
       <Navbar />
@@ -12,15 +40,19 @@ export const SignUp = () => {
             Sign Up <span className="tw-text-blue-500"> ChatApp</span>
           </h1>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <label className="tw-label tw-p-2">
                 <span className="tw-text-base tw-label-text">Full Name</span>
               </label>
               <input
                 type="text"
-                placeholder="John Doe"
+                placeholder="Full Name"
                 className="tw-w-full tw-input tw-input-bordered tw-h-10"
+                name="fullName"
+                value={userData.fullName}
+                onChange={handleChanges}
+                autoComplete="name"
               />
             </div>
 
@@ -30,8 +62,12 @@ export const SignUp = () => {
               </label>
               <input
                 type="text"
-                placeholder="johndoe"
+                placeholder="Username"
                 className="tw-w-full tw-input tw-input-bordered tw-h-10"
+                name="username"
+                value={userData.username}
+                onChange={handleChanges}
+                autoComplete="additional-name"
               />
             </div>
 
@@ -42,7 +78,11 @@ export const SignUp = () => {
               <input
                 type="password"
                 placeholder="Enter Password"
+                autoComplete="new-password"
                 className="tw-w-full tw-input tw-input-bordered tw-h-10"
+                name="password"
+                value={userData.password}
+                onChange={handleChanges}
               />
             </div>
 
@@ -56,20 +96,30 @@ export const SignUp = () => {
                 type="password"
                 placeholder="Confirm Password"
                 className="tw-w-full tw-input tw-input-bordered tw-h-10"
+                autoComplete="new-password"
+                name="confirmPassword"
+                value={userData.confirmPassword}
+                onChange={handleChanges}
               />
             </div>
 
-            <GenderCheckbox />
+            <GenderCheckbox
+              handleGenderChange={handleGenderChange}
+              activeGender={userData.gender}
+            />
 
-            <a
-              className="tw-text-sm tw-hover:underline tw-hover:text-blue-600 tw-mt-2 tw-inline-block"
-              href="#"
+            <Link
+              className="tw-font-medium tw-mb-5 tw-text-sm tw-hover:underline tw-hover:text-blue-600 tw-mt-2 tw-inline-block"
+              to="/login"
             >
               Already have an account?
-            </a>
+            </Link>
 
             <div>
-              <button className="tw-btn tw-btn-block tw-btn-sm tw-mt-2 tw-border tw-border-slate-700">
+              <button
+                type="submit"
+                className="tw-btn tw-btn-block tw-btn-sm tw-mt-2 tw-border tw-border-slate-700"
+              >
                 Sign Up
               </button>
             </div>

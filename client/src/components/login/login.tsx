@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Navbar } from "../navbar/navbar";
 
 export const Login = () => {
@@ -33,12 +34,12 @@ export const Login = () => {
                 className="tw-w-full tw-input tw-input-bordered tw-h-10"
               />
             </div>
-            <a
-              href="#"
-              className="tw-text-sm tw-hover:underline tw-hover:text-blue-600 tw-mt-2 tw-inline-block"
+            <Link
+              to="/signup"
+              className="tw-text-sm tw-font-medium  tw-hover:underline tw-hover:text-blue-600 tw-my-5 tw-text-orange-color tw-inline-block"
             >
               {"Don't"} have an account?
-            </a>
+            </Link>
 
             <div>
               <button className="tw-btn tw-btn-block tw-btn-sm tw-mt-2">
