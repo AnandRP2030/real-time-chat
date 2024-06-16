@@ -4,6 +4,7 @@ import { LoginUserDeatils } from "../types/userTypes";
 interface AuthContextType {
   authUser: LoginUserDeatils | null;
   addNewUser: (user: LoginUserDeatils) => void;
+  removeUser: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -33,8 +34,11 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({
   const addNewUser = (user: LoginUserDeatils) => {
     setAuthUser(user);
   };
+  const removeUser = () => {
+    setAuthUser(null);
+  }
   return (
-    <AuthContext.Provider value={{ authUser, addNewUser }}>
+    <AuthContext.Provider value={{ authUser, addNewUser, removeUser }}>
       {children}
     </AuthContext.Provider>
   );
